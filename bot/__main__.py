@@ -61,6 +61,7 @@ async def digest_loop(bot: Bot, cfg: Config, crm: CRMClient, storage: Storage) -
 
 async def main() -> None:
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
+    logging.getLogger("httpx").setLevel(logging.WARNING)  # one line per poll is noise
     cfg = Config.from_env()
     crm = CRMClient(cfg.crm_url, cfg.crm_username, cfg.crm_password)
     storage = Storage(cfg.db_path)
