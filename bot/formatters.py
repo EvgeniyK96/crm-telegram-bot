@@ -9,7 +9,8 @@ ORDER_ICONS = {"confirmed": "🟡", "in_production": "🔵", "ready": "🟢"}
 
 
 def money(value) -> str:
-    return f"{Decimal(value):,.0f}".replace(",", " ") + " ₸"
+    # non-breaking spaces keep "126 000 ₸" on one line in narrow chat bubbles
+    return f"{Decimal(value):,.0f}".replace(",", "\u00a0") + "\u00a0₸"
 
 
 def qty(value) -> str:

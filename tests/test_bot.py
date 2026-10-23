@@ -106,9 +106,9 @@ async def test_crm_client_refreshes_expired_token():
 def test_formatting_escapes_html_and_translates():
     text = fmt.event(entry(1, kind="comment", text="<b>hi</b> & bye"), "en")
     assert "&lt;b&gt;hi&lt;/b&gt; &amp; bye" in text and "Production task ПЗ-00005" in text
-    assert fmt.money("126000.00") == "126 000 ₸"
+    assert fmt.money("126000.00") == "126\u00a0000\u00a0₸"
     assert fmt.qty("59.455") == "59.455" and fmt.qty("40.000") == "40"
-    assert "0 of 40 L" in fmt.stock_list(dashboard([MILK]), "en")
+    assert "0 of 40\u00a0L" in fmt.stock_list(dashboard([MILK]), "en")
 
 
 def test_orders_overdue_mark():
